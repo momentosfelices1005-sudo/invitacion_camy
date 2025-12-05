@@ -498,7 +498,7 @@
       <div class="contenido">
         <span class="dia-texto">SÁBADO</span>
         <div class="dia-numero" style="color: rgb(99, 99, 99)">17</div>
-        <span class="hora" >18:30 PM</span>
+        <span class="hora" >21:30 PM</span>
       </div>
       <div class="anio">2026</div>
     </div>
@@ -510,7 +510,7 @@
     <section style="margin-top: 26px; margin-bottom:40px;">
       <img src="recepcion.png" class="img-fluid" alt="Lugar celebración">
       <div style="display:flex; flex-direction:column; align-items:center; gap:6px; margin-top:12px;">
-        <div class="dia-numero" style="font-size: 2.4rem;">18:30</div>
+        <div class="dia-numero" style="font-size: 2.4rem;">21:30</div>
         <p class="manuscrita" style="font-size: 1.9rem;">Recepción</p>
         <span style="font-size: 17px; font-weight:500;">Salón de Recepciones Rancho Grande</span>
         <p style="font-size: 16px;">Junto al Colegio Catalinas, Ricaurte.</p>
@@ -521,9 +521,6 @@
     </section>
 
 
-    <div style="padding: 0 8%; margin-top: 8px;">
-                <span style="color: grey; font-size: 14px;">*La comida se servirá puntualmente a las 19:00. Agradecemos mucho tu puntualidad para que puedas disfrutar plenamente de este momento especial. </span>
-            </div>
 
 
     <br><br><br>
@@ -742,13 +739,7 @@ Lo más importante para nosotros es contar con su presencia en este día tan esp
               Por favor ingresa un nombre válido (solo letras y espacios).
             </div>
           </div>
-          <div class="mb-3">
-            <label for="acompanantes" class="form-label" style="font-size: 17px;">¿Vendrás con acompañante? Ingresa su nombre (opcional - máx. 1)</label>
-            <input type="text" class="form-control" id="acompanantes" placeholder="" style="font-size: 17px;">
-            <div class="invalid-feedback">
-              Por favor ingresa un nombre válido (solo letras y espacios).
-            </div>
-          </div>
+       
         </form>
       </div>
       <div class="modal-footer">
@@ -808,7 +799,7 @@ Lo más importante para nosotros es contar con su presencia en este día tan esp
     const mEl = document.getElementById('m');
     const sEl = document.getElementById('s');
     const countdownContainer = document.getElementById('countdown');
-    const target = new Date('2026-01-17T18:30:00');
+    const target = new Date('2026-01-17T21:30:00');
 
     function actualizarContador() {
       const now = new Date();
@@ -852,7 +843,6 @@ Lo más importante para nosotros es contar con su presencia en este día tan esp
 
 document.getElementById('btnEnviarWhatsapp').addEventListener('click', function () {
     const nombre = document.getElementById('nombre');
-    const acompanantes = document.getElementById('acompanantes');
     let valido = true;
 
     const regexNombre = /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/;
@@ -866,31 +856,10 @@ document.getElementById('btnEnviarWhatsapp').addEventListener('click', function 
         nombre.classList.remove('is-invalid');
     }
 
-    // Validar acompañantes (opcional)
-    if (acompanantes.value.trim()) {
-        // Solo validar si viene lleno
-        const acompValido = regexNombre.test(acompanantes.value.trim());
-        if (!acompValido) {
-            acompanantes.classList.add('is-invalid');
-            valido = false;
-        } else {
-            acompanantes.classList.remove('is-invalid');
-        }
-    } else {
-        // Si está vacío no es error
-        acompanantes.classList.remove('is-invalid');
-    }
-
     if (!valido) return;
 
     // Construir mensaje
     let mensaje = `Hola, felicidades Camy por tus quince años. Confirmo mi asistencia en este día tan especial. Mi nombre es ${nombre.value.trim()}`;
-
-    if (acompanantes.value.trim()) {
-        mensaje += ` y asistiré con ${acompanantes.value.trim()}`;
-    } else {
-        mensaje += ` y asistiré sin acompañantes`;
-    }
 
     const url = `https://wa.me/593987523792?text=${encodeURIComponent(mensaje)}`;
     window.open(url, '_blank');
@@ -905,6 +874,7 @@ document.getElementById('btnEnviarWhatsapp').addEventListener('click', function 
 
 </body>
 </html>
+
 
 
 
